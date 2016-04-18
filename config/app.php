@@ -156,7 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Metafields\MetaFieldsServiceProvider::class,
+        Metafields\MetafieldsServiceProvider::class,
     ],
 
     /*
