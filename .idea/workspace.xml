@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ca0f9782-75ff-4f7b-8282-aacb3e8b5231" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Metafields/Models/Metafield.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/meta_fields.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2016_04_18_152543_create_meta_fields_table.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Metafields/Models/Metafields.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Metafields/Concerns/AddsMetafieldFunctionality.php" afterPath="$PROJECT_DIR$/src/Metafields/Concerns/AddsMetafieldFunctionality.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Metafields/Types/Number.php" afterPath="$PROJECT_DIR$/src/Metafields/Types/Number.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Metafields/migrations/2016_04_18_152543_create_meta_fields_table.php" afterPath="$PROJECT_DIR$/src/Metafields/migrations/2016_04_18_152543_create_meta_fields_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Metafields/Commands/MigrationMakeFieldCommand.php" afterPath="$PROJECT_DIR$/src/Metafields/Commands/MigrationMakeFieldCommand.php" />
     </list>
     <ignored path="MetaFields.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,8 +49,8 @@
       <file leaf-file-name="InteractsWithValuesTable.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Metafields/Concerns/InteractsWithValuesTable.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+            <state relative-caret-position="360">
+              <caret line="34" column="77" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="77" />
               <folding>
                 <element signature="e#38#77#0#PHP" expanded="true" />
               </folding>
@@ -71,31 +61,11 @@
       <file leaf-file-name="MigrationMakeFieldCommand.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Metafields/Commands/MigrationMakeFieldCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+            <state relative-caret-position="401">
+              <caret line="61" column="97" selection-start-line="61" selection-start-column="97" selection-end-line="61" selection-end-column="97" />
               <folding>
                 <element signature="e#39#88#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2016_04_18_152543_create_meta_fields_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_04_18_152543_create_meta_fields_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2016_04_19_153250_add_example_meta_values_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2016_04_19_153250_add_example_meta_values_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -141,8 +111,8 @@
         <option value="$PROJECT_DIR$/src/Metafields/MetafieldsServiceProvider.php" />
         <option value="$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/ServiceProvider.php" />
         <option value="$PROJECT_DIR$/src/Metafields/Models/Metafield.php" />
-        <option value="$PROJECT_DIR$/src/Metafields/Commands/MigrationMakeFieldCommand.php" />
         <option value="$PROJECT_DIR$/src/Metafields/Concerns/InteractsWithValuesTable.php" />
+        <option value="$PROJECT_DIR$/src/Metafields/Commands/MigrationMakeFieldCommand.php" />
       </list>
     </option>
   </component>
@@ -738,12 +708,12 @@
       <workItem from="1461047383111" duration="4278000" />
       <workItem from="1461055917609" duration="3000" />
       <workItem from="1461065964422" duration="947000" />
-      <workItem from="1461067408082" duration="10559000" />
+      <workItem from="1461067408082" duration="11054000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23214000" />
+    <option name="totallyTimeSpent" value="23709000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1028" extended-state="6" />
@@ -1146,16 +1116,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Metafields/Concerns/InteractsWithValuesTable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding>
-            <element signature="e#38#77#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2016_04_19_151030_create_example_meta_values.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1196,10 +1156,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Metafields/Concerns/InteractsWithValuesTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="34" column="77" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="77" />
+          <folding>
+            <element signature="e#38#77#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Metafields/Commands/MigrationMakeFieldCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        <state relative-caret-position="401">
+          <caret line="61" column="97" selection-start-line="61" selection-start-column="97" selection-end-line="61" selection-end-column="97" />
           <folding>
             <element signature="e#39#88#0#PHP" expanded="true" />
           </folding>

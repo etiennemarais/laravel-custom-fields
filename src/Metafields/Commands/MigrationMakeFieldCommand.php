@@ -58,6 +58,8 @@ class MigrationMakeFieldCommand extends Command
      */
     public function fire()
     {
+        // TODO remake this to allow for dynamic field appends
+        // ex: 'add_' . $metaField['model'] . '_meta_values_table_with_' . $metaField['field_name'];
         $this->meta = (new NameParser)->parse($this->argument('name'));
         $this->makeMigration();
     }
@@ -143,7 +145,7 @@ class MigrationMakeFieldCommand extends Command
      */
     protected function replaceClassName(&$stub)
     {
-        $className = ucwords(camel_case($this->option('classname')));
+        $className = ucwords(camel_case($this->argument('name')));
 
         $stub = str_replace('{{class}}', $className, $stub);
 
@@ -185,16 +187,6 @@ class MigrationMakeFieldCommand extends Command
     }
 
     /**
-     * Get the class name for the Eloquent model generator.
-     *
-     * @return string
-     */
-    protected function getModelName()
-    {
-        return ucwords(str_singular(camel_case($this->meta['table'])));
-    }
-
-    /**
      * Get the console command arguments.
      *
      * @return array
@@ -215,7 +207,6 @@ class MigrationMakeFieldCommand extends Command
     {
         return [
             ['schema', 's', InputOption::VALUE_REQUIRED, 'Mandatory schema to be attached to the migration', null],
-            ['classname', null, InputOption::VALUE_REQUIRED, 'Mandatory classname for the migrations to be unique', true],
         ];
     }
 }
