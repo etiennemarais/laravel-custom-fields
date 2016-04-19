@@ -14,6 +14,7 @@ class CreateMetaFieldsTable extends Migration
     {
         Schema::create('meta_fields', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('model', 50);
             $table->string('title', 200);
             $table->string('field_name', 200); # Generated sanitized name for values table field columns
             $table->enum('type', \Metafields\FieldTypes::availableTypes())->default('string');

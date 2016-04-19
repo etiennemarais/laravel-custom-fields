@@ -5,8 +5,8 @@ use Illuminate\Support\ServiceProvider;
 
 class MetafieldsServiceProvider extends ServiceProvider
 {
-    protected $defer = true;
-    
+//    protected $defer = true;
+
     public function boot()
     {
         $this->publishes([
@@ -20,13 +20,17 @@ class MetafieldsServiceProvider extends ServiceProvider
     }
 
     public function register() {
-        // Do nothing yet
+        $this->app->singleton('command.metafield.migrate', function () {
+            return app('Metafields\Commands\MigrationMakeFieldCommand');
+        });
+
+        $this->commands('command.metafield.migrate');
     }
 
     /**
      * @return array
      */
-    public function when() {
-        return array('artisan.start');
-    }
+//    public function when() {
+//        return array('artisan.start');
+//    }
 }
