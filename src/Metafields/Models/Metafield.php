@@ -34,9 +34,16 @@ class Metafield extends Model
     {
         parent::boot();
 
-        static::creating(function ($model) {
+        static::creating(function($model) {
+            /** @var \Metafields\Models\Metafield $model */
             $model->generateFieldNameFromTitle();
             $model->addValuesModelFieldIfNotExists();
+        });
+
+        static::updating(function($model) {
+            /** @var \Metafields\Models\Metafield $model */
+            $model->generateFieldNameFromTitle();
+            $model->renameValuesFieldIfChanged();
         });
 
         // TODO handle editing/deleting/saving
@@ -63,13 +70,36 @@ class Metafield extends Model
     {
         $fieldName = $this->attributes['field_name'];
 
-        $fieldCallback = FieldTypes::makeCallbackFromType($this->attributes['type'], $fieldName);
+        $fieldCallback = FieldTypes::createSchemaCallback($this->attributes['type'], $fieldName);
 
         if ($this->hasValuesTableField($fieldName)) {
             return true;
         } else {
-            $this->addValuesTableField($this->attributes['model'], $fieldCallback);
+            $this->changeValuesTableField($this->attributes['model'], $fieldCallback);
             return true;
         }
+    }
+
+    /**
+     * // TODO a values field should probably update itself on metafield edit anyway
+     * // TODO some thinking needs to go into changing the type, model or enum options
+     *
+     * @return boolean
+     * @throws \ErrorException
+     */
+    protected function renameValuesFieldIfChanged()
+    {
+        if ($this->isDirty(['field_name'])) {
+            $fieldUpdateCallback = FieldTypes::renameSchemaCallback(
+                $this->getOriginal('field_name'),
+                $this->attributes['field_name']
+            );
+
+            $this->changeValuesTableField($this->attributes['model'], $fieldUpdateCallback);
+        } else if ($this->isDirty(['type', 'model', 'options'])) {
+            throw new \ErrorException('Cannot change the type, model or options of an added meta field.');
+        }
+
+        return true;
     }
 }

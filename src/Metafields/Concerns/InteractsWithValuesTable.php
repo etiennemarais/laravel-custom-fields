@@ -3,7 +3,6 @@ namespace Metafields\Concerns;
 
 use Closure;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
 trait InteractsWithValuesTable
@@ -38,7 +37,7 @@ trait InteractsWithValuesTable
      *     $table->integer('CustomNumber');
      * }
      */
-    public function addValuesTableField($model, Closure $fieldCallback)
+    public function changeValuesTableField($model, Closure $fieldCallback)
     {
         Schema::table($model . '_meta_values', $fieldCallback);
     }

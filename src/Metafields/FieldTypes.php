@@ -1,6 +1,7 @@
 <?php
 namespace Metafields;
 
+use Illuminate\Database\Schema\Blueprint;
 use Metafields\Types\Number;
 use Metafields\Types\Option;
 use Metafields\Types\Text;
@@ -26,7 +27,7 @@ class FieldTypes
      * @param string $fieldName
      * @return \Closure
      */
-    public static function makeCallbackFromType($type, $fieldName)
+    public static function createSchemaCallback($type, $fieldName)
     {
         switch ($type) {
             case Number::$type:
@@ -40,5 +41,17 @@ class FieldTypes
                 return Text::schemaCallback($fieldName);
                 break;
         }
+    }
+
+    /**
+     * @param $oldFieldName
+     * @param $newFieldName
+     * @return \Closure
+     */
+    public static function renameSchemaCallback($oldFieldName, $newFieldName)
+    {
+        return function(Blueprint $table) use ($oldFieldName, $newFieldName) {
+            $table->renameColumn($oldFieldName, $newFieldName);
+        };
     }
 }
