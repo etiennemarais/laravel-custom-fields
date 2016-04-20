@@ -20,11 +20,7 @@ class MetafieldsServiceProvider extends ServiceProvider
     }
 
     public function register() {
-        $this->app->singleton('command.metafield.migrate', function () {
-            return app('Metafields\Commands\MigrationMakeFieldCommand');
-        });
-
-        $this->commands('command.metafield.migrate');
+        // Do Nothing
     }
 
     /**

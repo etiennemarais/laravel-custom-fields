@@ -20,4 +20,25 @@ class FieldTypes
             Option::$type,
         ];
     }
+
+    /**
+     * @param string $type
+     * @param string $fieldName
+     * @return \Closure
+     */
+    public static function makeCallbackFromType($type, $fieldName)
+    {
+        switch ($type) {
+            case Number::$type:
+                return Number::schemaCallback($fieldName);
+                break;
+            case Toggle::$type:
+                return Toggle::schemaCallback($fieldName);
+                break;
+            case Text::$type:
+            default:
+                return Text::schemaCallback($fieldName);
+                break;
+        }
+    }
 }

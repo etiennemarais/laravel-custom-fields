@@ -1,6 +1,8 @@
 <?php
 namespace Metafields\Concerns;
 
+use Closure;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
@@ -10,12 +12,10 @@ trait InteractsWithValuesTable
         $valuesTableName = $this->table . '_meta_values';
 
         if (Schema::hasTable($valuesTableName) === false) {
-            Artisan::call('make:migration', [
-                'name' => 'create_' . $valuesTableName,
-                '--create' => $valuesTableName,
-            ]);
-
-            Artisan::call('migrate');
+            Schema::create($valuesTableName, function (Blueprint $table) {
+                $table->increments('id');
+                $table->unsignedInteger('model_id');
+            });
         }
     }
 
@@ -30,17 +30,16 @@ trait InteractsWithValuesTable
         return (in_array($fieldName, $fields));
     }
 
-    public function addValuesTableField(array $metaField)
+    /**
+     * @param Closure $fieldCallback
+     *
+     * example:
+     * function(Blueprint $table) {
+     *     $table->integer('CustomNumber');
+     * }
+     */
+    public function addValuesTableField($model, Closure $fieldCallback)
     {
-        $migrationName = 'add_' . $metaField['model'] . '_meta_values_table';
-        $schema = $metaField['field_name'] . ':' . $metaField['type'];
-
-        Artisan::call('make:migration:meta', [
-            'name' => $migrationName,
-            '--classname' => $migrationName . '_with_' . $metaField['field_name'],
-            '--schema' => $schema,
-        ]);
-
-        Artisan::call('migrate');
+        Schema::table($model . '_meta_values', $fieldCallback);
     }
 }

@@ -156,7 +156,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Laracasts\Generators\GeneratorsServiceProvider::class,
         Metafields\MetafieldsServiceProvider::class,
     ],
 

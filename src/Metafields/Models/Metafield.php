@@ -3,6 +3,7 @@ namespace Metafields\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Metafields\Concerns\InteractsWithValuesTable;
+use Metafields\FieldTypes;
 
 class Metafield extends Model
 {
@@ -37,6 +38,8 @@ class Metafield extends Model
             $model->generateFieldNameFromTitle();
             $model->addValuesModelFieldIfNotExists();
         });
+
+        // TODO handle editing/deleting/saving
     }
 
     /**
@@ -58,10 +61,14 @@ class Metafield extends Model
      */
     protected function addValuesModelFieldIfNotExists()
     {
-        if ($this->hasValuesTableField($this->attributes['field_name'])) {
+        $fieldName = $this->attributes['field_name'];
+
+        $fieldCallback = FieldTypes::makeCallbackFromType($this->attributes['type'], $fieldName);
+
+        if ($this->hasValuesTableField($fieldName)) {
             return true;
         } else {
-            $this->addValuesTableField($this->attributes);
+            $this->addValuesTableField($this->attributes['model'], $fieldCallback);
             return true;
         }
     }
