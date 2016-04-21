@@ -44,14 +44,25 @@ class FieldTypes
     }
 
     /**
-     * @param $oldFieldName
-     * @param $newFieldName
+     * @param string $oldFieldName
+     * @param string $newFieldName
      * @return \Closure
      */
     public static function renameSchemaCallback($oldFieldName, $newFieldName)
     {
         return function(Blueprint $table) use ($oldFieldName, $newFieldName) {
             $table->renameColumn($oldFieldName, $newFieldName);
+        };
+    }
+
+    /**
+     * @param string $fieldName
+     * @return \Closure
+     */
+    public static function dropSchemaCallback($fieldName)
+    {
+        return function(Blueprint $table) use ($fieldName) {
+            $table->dropColumn($fieldName);
         };
     }
 }

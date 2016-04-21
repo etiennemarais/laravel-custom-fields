@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Schema;
 
 trait InteractsWithValuesTable
 {
-    public function addsValuesTableIfNotExists() {
-        $valuesTableName = $this->table . '_meta_values';
+    public function addsValuesTableIfNotExists($model = null)
+    {
+        $tableName = (is_null($model)) ? $this->table : $model;
+        $valuesTableName = $tableName . '_meta_values';
 
         if (Schema::hasTable($valuesTableName) === false) {
             Schema::create($valuesTableName, function (Blueprint $table) {
@@ -20,16 +22,20 @@ trait InteractsWithValuesTable
 
     /**
      * @param string $fieldName
+     * @param string $model
      * @return boolean
      */
-    public function hasValuesTableField($fieldName)
+    public function hasValuesTableField($fieldName, $model = null)
     {
-        $fields = Schema::getColumnListing($this->table . '_meta_values');
+        $tableName = (is_null($model)) ? $this->table : $model;
+
+        $fields = Schema::getColumnListing($tableName . '_meta_values');
 
         return (in_array($fieldName, $fields));
     }
 
     /**
+     * @param string $model
      * @param Closure $fieldCallback
      *
      * example:

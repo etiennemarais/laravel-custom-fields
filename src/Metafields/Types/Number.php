@@ -18,6 +18,7 @@ class Number
     {
         return function(Blueprint $table) use ($field) {
             $table->{self::$type}($field, false, self::$unsigned)
+                ->default(self::$default)
                 ->isNullable();
         };
     }

@@ -14,4 +14,6 @@ trait AddsMetafieldFunctionality
 
         $this->addsValuesTableIfNotExists();
     }
+
+    // TODO Add functionality here to write the value into the values table if it's a custom field
 }

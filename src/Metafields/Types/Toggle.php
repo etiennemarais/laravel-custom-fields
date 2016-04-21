@@ -18,6 +18,7 @@ class Toggle
     {
         return function(Blueprint $table) use ($field) {
             $table->{self::$type}($field)
+                ->default(self::$default)
                 ->isNullable();
         };
     }

@@ -36,6 +36,7 @@ class Metafield extends Model
 
         static::creating(function($model) {
             /** @var \Metafields\Models\Metafield $model */
+            $model->addsValuesTableIfNotExists($model->attributes['model']);
             $model->generateFieldNameFromTitle();
             $model->addValuesModelFieldIfNotExists();
         });
@@ -46,7 +47,10 @@ class Metafield extends Model
             $model->renameValuesFieldIfChanged();
         });
 
-        // TODO handle editing/deleting/saving
+        static::deleting(function($model) {
+            /** @var \Metafields\Models\Metafield $model */
+            $model->deleteValuesField();
+        });
     }
 
     /**
@@ -101,5 +105,22 @@ class Metafield extends Model
         }
 
         return true;
+    }
+
+    /**
+     * TODO Might need to try/catch for PDOException here
+     * @return boolean
+     */
+    protected function deleteValuesField()
+    {
+        $fieldName = $this->attributes['field_name'];
+        if ($this->hasValuesTableField($fieldName, $this->attributes['model'])) {
+            $fieldDropCallback = FieldTypes::dropSchemaCallback($fieldName);
+
+            $this->changeValuesTableField($this->attributes['model'], $fieldDropCallback);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

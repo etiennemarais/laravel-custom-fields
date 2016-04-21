@@ -18,6 +18,7 @@ class Text
     {
         return function(Blueprint $table) use ($field) {
             $table->{self::$type}($field, self::$length)
+                ->default(self::$default)
                 ->isNullable();
         };
     }

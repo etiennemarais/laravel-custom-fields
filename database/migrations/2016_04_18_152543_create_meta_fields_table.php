@@ -18,7 +18,7 @@ class CreateMetaFieldsTable extends Migration
             $table->string('title', 200);
             $table->string('field_name', 200); # Generated sanitized name for values table field columns
             $table->enum('type', \Metafields\FieldTypes::availableTypes())->default('string');
-            $table->json('options');
+            $table->json('options')->nullable();
         });
     }
 
