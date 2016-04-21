@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Schema;
 
 trait InteractsWithValuesTable
 {
+    /**
+     * @param string|null $model
+     */
     public function addsValuesTableIfNotExists($model = null)
     {
         $tableName = (is_null($model)) ? $this->table : $model;
