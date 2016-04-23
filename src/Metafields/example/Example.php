@@ -9,4 +9,6 @@ class Example extends Model
     use AddsMetafieldFunctionality;
 
     protected $table = 'example';
+
+    protected $fillable = ['name'];
 }
